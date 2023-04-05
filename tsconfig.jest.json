@@ -1,0 +1,6 @@
+{
+  "extends": "./tsconfig.json",
+  "compolierOptions": {
+    "jsx": "react-jsx"
+  }
+}

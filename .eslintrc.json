@@ -1,0 +1,21 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",    
+    "react-app",
+    "plugin:jest/style",
+    "plugin:jest/recommended",
+    "prettier"
+  ],
+  "overrides": [
+		{
+			"files": [
+        "**/__tests__/**/*.[jt]s?(x)", 
+        "**/?(*.)+(spec|test).[jt]s?(x)"
+      ],
+			"extends": [
+        "plugin:testing-library/react"
+      ]
+		}
+	]
+}
