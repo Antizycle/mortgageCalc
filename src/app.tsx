@@ -1,7 +1,12 @@
-import React from 'react';
-
+import React, { useState } from 'react';
+import { LoanResult } from './components/LoanResult';
+import { LoanForm } from './components/LoanForm';
+import { Info } from './components/Info';
+import { initForm } from './data/data';
 
 export const App: React.FC = () => {
+  const [ formData, setFormData] = useState(initForm);
+
   return (
     <>
     <header className='header'>
@@ -17,16 +22,14 @@ export const App: React.FC = () => {
 
     <main className='main container'>
       <section className="main__calc">
-        <form className="main__form">
-          form component here
-        </form>
-        <aside className="main__results">
-          results here
-        </aside>
+
+        <LoanForm data={formData} onDataChange={setFormData} />
+        <LoanResult />
+
       </section>
-      <section className="main__info">
-        info
-      </section>
+
+        <Info />
+
     </main>
 
     <footer className='footer'>

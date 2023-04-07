@@ -13,12 +13,15 @@ Practice styling complex form components, wire interdependency, complex conditio
 User can choose different types of mortgage, enter (or use range sliders) different values, check additional options to reduce loan interest value. And after some delay (to minimize rerenders) results should be calculated and shown. Additionally user can view payment schedule.  
 ### **Progress Log:**
 
+#2. Add data lists (initial Form data, options, mods and inputs).  
+Add Form components with rudimentary logic for rendering inputs and corresponding range sliders, toggles and maternity/funds balancing. And required prop drilling for upcoming Form and Results state changing.
+Add form elements stylings. Add some auxiliary functions for general use.  
 #1. Add development environment, basic Layout and Initial style.  
 
 ### **TODO:**
 - [x] Development env., basic layout, styles
-- [ ] Fill up default form and lists data
-- [ ] Create Form Component and its children, style up
+- [x] Fill up default form and lists data
+- [x] Create Form Component and its children, style up
 - [ ] Implement form logic
 - [ ] Implement results debounce and calculation logic
 - [ ] Add payment schedule rendering
@@ -27,4 +30,4 @@ User can choose different types of mortgage, enter (or use range sliders) differ
 - [ ] And refactor some more!
 
 ### **Known Issues:**
-1. So far none :)
+1. Might be some quirks in maternity/funds balancing, would test and catch when Form state changing logic is implemented
