@@ -9,7 +9,6 @@
 /coverage
 /source_files
 /index.html
-/.github
 
 # production
 /dist
