@@ -2,45 +2,37 @@ import React, { useState } from 'react';
 import { MaternityTogglePropsType } from '../types/types';
 import { thousSeparator, prepareValue } from '../auxiliary/auxiliary';
 
-export const MaternityToggle = ( {data, onChange, onClick}: MaternityTogglePropsType ) => {
-  const [ totalValue, setTotalValue] = useState([data.matValue, 0]);
-  const maxTotal = data.fee;
-  const total = totalValue[0] + totalValue[1];
-
-  if (total < maxTotal) setTotalValue([totalValue[0], maxTotal - data.matValue]);
-  if (total > maxTotal) setTotalValue([maxTotal, 0]);
-  // if (data.matValue > maxTotal) setTotalValue([maxTotal, 0]);
+export const MaternityToggle = ( {feeValue, data, onValueChange, onDataChange}: MaternityTogglePropsType ) => {
+  const [ bothValues, setbothValues] = useState([data.matValue, 0]);
+  const maxTotal = feeValue;
+  const maxFeeValue = Math.round(data.price * 0.9);
+  const minFeeValue = Math.round(data.price * data.minFee / 100);
   
-  function handleMaternityChange (event: React.ChangeEvent<HTMLInputElement>) {
-    let nextMatValue = prepareValue(event.target.value);
-    let nextFundsValue = totalValue[1];
+  function handleChange (nextMatValue: number, nextFundsValue: number) {
+    if (nextMatValue > data.matValue) nextMatValue = data.matValue;
+    if (nextMatValue > maxTotal) nextMatValue = maxTotal;
+    if (nextMatValue + nextFundsValue > maxFeeValue) nextFundsValue = maxFeeValue - nextMatValue;
+    if (nextMatValue + nextFundsValue < minFeeValue) nextFundsValue = minFeeValue - nextMatValue;
 
-    if (nextMatValue > data.matValue) {
-      nextMatValue = data.matValue;
-    } 
-    if (nextMatValue < 0) {
-      nextMatValue = 0;
-    }
-    if (nextMatValue > maxTotal) {
-      nextMatValue = maxTotal;
-      nextFundsValue = 0;
-    }
-    if (nextMatValue + nextFundsValue > maxTotal) nextFundsValue = maxTotal - nextMatValue;
-
-    setTotalValue([nextMatValue, nextFundsValue]);
+    const newFee = nextMatValue + nextFundsValue;
+    
+    setbothValues([nextMatValue, nextFundsValue]);
+    onValueChange({fee: newFee});
+    onDataChange([
+      { target: 'fee', value: newFee }
+    ]);
   }
 
-  function handleFundsChange (event: React.ChangeEvent<HTMLInputElement>) {
-    let nextFundsValue = prepareValue(event.target.value);
-    let nextMatValue = totalValue[0];
 
-    if (nextFundsValue < 0 ) nextFundsValue = 0;
-    if (nextFundsValue > maxTotal) nextFundsValue = maxTotal;
-    if (nextFundsValue + nextMatValue >= maxTotal) nextMatValue = maxTotal - nextFundsValue;
-    if (nextMatValue < 0) nextMatValue = 0;
-    if (nextMatValue > data.matValue) nextMatValue = data.matValue
-
-    setTotalValue([nextMatValue, nextFundsValue]);
+  function clickHandler(eventValue: boolean) {
+    if (eventValue) {
+      console.log(data.matValue, data.fee);
+      if (data.matValue > data.fee) setbothValues([data.fee, 0]);
+      if (data.matValue < data.fee) setbothValues([data.matValue, data.fee - data.matValue]);
+    }
+    onDataChange([
+      { target: 'maternity', value: eventValue }
+    ]);
   }
 
   return (
@@ -48,7 +40,7 @@ export const MaternityToggle = ( {data, onChange, onClick}: MaternityToggleProps
       <div className="form__switch" >
         <span className='form__lable--switch-desc'>I want to use my Maternity Capital</span>
         <div className={ (data.maternity ? 'form__switch-container--on' : '') + ' form__switch-container'} 
-              onClick={ onClick }>
+              onClick={ () => clickHandler(!data.maternity) }>
           <div className={ (data.maternity ? 'form__toggle form__toggle--on' : 'form__toggle')}>
           </div>
         </div>
@@ -61,9 +53,10 @@ export const MaternityToggle = ( {data, onChange, onClick}: MaternityToggleProps
                   className='form__input'
                   id='maternityInput'
                   name='maternity_input'
-                  value={ thousSeparator(totalValue[0]) }
+                  value={ thousSeparator(bothValues[0]) }
                   title={ 'Maternity capital cant be more than ' + data.matValue }
-                  onChange={ handleMaternityChange }
+                  onChange={ event => 
+                    handleChange(prepareValue(event.target.value), bothValues[1]) }
                   />
           </div>
           <div className="form__wrapper" key="funds">
@@ -72,9 +65,10 @@ export const MaternityToggle = ( {data, onChange, onClick}: MaternityToggleProps
                   className='form__input'
                   id='fundsInput'
                   name='funds_input'
-                  value={ thousSeparator(totalValue[1]) }
+                  value={ thousSeparator(bothValues[1]) }
                   title={ 'Personal funds cant be more than ' + maxTotal }
-                  onChange={ handleFundsChange }
+                  onChange={ event => 
+                    handleChange(bothValues[0], prepareValue(event.target.value)) }
                   />
           </div>
         </div>

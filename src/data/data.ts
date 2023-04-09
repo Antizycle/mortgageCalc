@@ -88,10 +88,12 @@ export const optionsList: OptionListType = {
 export const initForm: InitFormType = {
   purpose: 'secondary',
   mod: 'base',
-  region: false,
+  regional: false,
+  initRate: 7.3,
   price: 1000,
   matValue: 500,
   minFee: 10,
+  feePercent: 10,
   fee: 100,
   term: 10,
   salaryProj: true,
@@ -99,7 +101,7 @@ export const initForm: InitFormType = {
   insurance: true,
   extraOne: true,
   extraTwo: true,
-  maternity: true
+  maternity: false
 };
 
 export const inputData: InputDataType = [
@@ -107,21 +109,21 @@ export const inputData: InputDataType = [
     id: 'price',
     min: 500,
     max: 50000,
-    label: 'Real estate price',
-    title: 'Type or select Real estate price (500 — 50 000)'
+    label: 'Real estate price, ≉',
+    title: 'Type or select Real estate price (500 — 50 000 ≉)'
   },
   {
     id: 'fee',
     min: 50,
     max: 50000,
-    label: 'Initial fee amount',
+    label: 'Initial fee amount, ≉',
     title: 'Type or select Initial fee amount'
   },
   {
     id: 'term',
     min: 1,
     max: 30,
-    label: 'Loan term',
+    label: 'Loan term, years',
     title: 'Type or select Loan term (1 — 30 years)'
   }
 ];

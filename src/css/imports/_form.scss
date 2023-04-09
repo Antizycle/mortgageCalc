@@ -11,6 +11,7 @@
     width: 100%;
     border: 1px solid $acnt-clr;
     border-radius: 5px;
+    margin-bottom: 1.5rem;
 
     &:hover, &:active, &:focus {
       border-color: $corct-clr;
@@ -146,6 +147,22 @@
       background-color: #f0f0f0;
       color: #898989;
       cursor: not-allowed;
+    }
+
+    &-min {
+      position: absolute;
+      left: 0;
+      bottom: -1.2rem;
+      color: $grey-clr;
+      font-size: 0.7rem;
+    }
+
+    &-max {
+      position: absolute;
+      right: 0;
+      bottom: -1.2rem;
+      color: $grey-clr;
+      font-size: 0.7rem;
     }
   }
 

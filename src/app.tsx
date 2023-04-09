@@ -3,9 +3,19 @@ import { LoanResult } from './components/LoanResult';
 import { LoanForm } from './components/LoanForm';
 import { Info } from './components/Info';
 import { initForm } from './data/data';
+import { NextFormDataType } from './types/types';
 
 export const App: React.FC = () => {
   const [ formData, setFormData] = useState(initForm);
+
+  function onDataChange(nextFormData: NextFormDataType) {
+    const updateObj = {...formData};
+    nextFormData.forEach( update => {
+      //console.log(`Updating ${update.target} with value: ${update.value}`);
+      updateObj[update.target] = update.value;
+    });
+    setFormData(updateObj);
+  }
 
   return (
     <>
@@ -23,7 +33,7 @@ export const App: React.FC = () => {
     <main className='main container'>
       <section className="main__calc">
 
-        <LoanForm data={formData} onDataChange={setFormData} />
+        <LoanForm data={formData} onDataChange={ onDataChange } />
         <LoanResult />
 
       </section>

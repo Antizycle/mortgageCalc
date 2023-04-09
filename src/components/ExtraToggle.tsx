@@ -3,10 +3,16 @@ import { ExtraTogglePropsType } from '../types/types';
 import { togglesData } from '../data/data';
 import { ExtraToggleInfo } from './ExtraToggleInfo';
 
-export const ExtraToggle = ( {data, handleClick}: ExtraTogglePropsType ) => {
+export const ExtraToggle = ( {data, onDataChange}: ExtraTogglePropsType ) => {
   let currentToggles = togglesData.filter( toggle => toggle.id !== 'canConfirmSalary' );
   
   if (data.salaryProj === false) currentToggles = Array.from(togglesData);
+
+  function handleClick(eventTarget: string, eventValue: boolean) {
+        onDataChange([
+      { target: eventTarget, value: eventValue }
+    ]);
+  }
 
   return (
     <>
@@ -18,7 +24,7 @@ export const ExtraToggle = ( {data, handleClick}: ExtraTogglePropsType ) => {
               { data[toggle.id] ? toggle.discount : '-0.0' }%
             </span>
             <div className={ (data[toggle.id] ? 'form__switch-container--on' : '') + ' form__switch-container'} 
-                  onClick={ handleClick }>
+                  onClick={ () => handleClick(toggle.id, !data[toggle.id]) }>
               <div className={ (data[toggle.id] ? 'form__toggle form__toggle--on' : 'form__toggle')}>
               </div>
             </div>

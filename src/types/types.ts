@@ -16,10 +16,12 @@ export type OptionListType = {
 export type StringKeysType = {
   purpose: keyof OptionListType & string,
   mod: string,
-  region: boolean,
+  regional: boolean,
+  initRate: number,
   price: number,
   matValue: number,
   minFee: number,
+  feePercent: number,
   fee: number,
   term: number,
   salaryProj: boolean,
@@ -50,36 +52,47 @@ export type InputType = {
 
 export type InputDataType = InputType[];
 
+export type NextFormDataElementType = {
+  target: string, value: string | number | boolean
+}
+
+export type NextFormDataType = NextFormDataElementType[];
+
+export type OnDataChangeType = (nextFormData: NextFormDataType) => void
+
+export type InputStateType = {
+  [key: string]: number
+}
+
 export type LoanFormPropsType = {
   data: InitFormType,
-  onDataChange: React.Dispatch<React.SetStateAction<InitFormType>>,
+  onDataChange: OnDataChangeType
 }
 
 export type OptionsPropsType = {
   data: OptionListType,
   selected: string,
-  onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void
+  onDataChange: OnDataChangeType
 };
 
 export type ModsPropsType = {
   data: OptionListType,
   selectedPurpose: string,
   selectedMod: string,
-  handleSelect: (event: React.MouseEvent<HTMLDivElement>) => void
+  onDataChange: OnDataChangeType
 };
 
 export type InputsPropsType = {
   data: InitFormType,
-  // type: 'price' | 'fee' | 'term',
-  handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
-  handleClick: (event: React.MouseEvent<HTMLDivElement>) => void
+  onDataChange: OnDataChangeType
 }
 
 export type InputWithRangePropsType = {
   formData: InitFormType,
   input: InputType,
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
-  onClick: (event: React.MouseEvent<HTMLDivElement>) => void
+  value: number,
+  onValueChange: (newValue: InputStateType) => void,
+  onDataChange: OnDataChangeType
 }
 
 export type ToggleType = {
@@ -94,11 +107,12 @@ export type TogglesDataType = {
 
 export type ExtraTogglePropsType = {
   data: InitFormType,
-  handleClick: (event: React.MouseEvent<HTMLDivElement>) => void
+  onDataChange: OnDataChangeType
 }
 
 export type MaternityTogglePropsType = {
+  feeValue: number
   data: InitFormType,
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void,
-  onClick: (event: React.MouseEvent<HTMLDivElement>) => void
+  onValueChange: (newValue: InputStateType) => void,
+  onDataChange: OnDataChangeType
 }

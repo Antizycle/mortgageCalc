@@ -7,12 +7,13 @@ Node.Js, Webpack 5 (with SASS, min-css-extract-plugin, html-webpack-plugin, dev
 
 ### **Goal:**
 Create a mortgage calculator with proper math behind calculations, different options that would affect calculations.
-Practice styling complex form components, wire interdependency, complex conditional rendering, state management on multiple levels, debouncing result calculation.  
+Practice styling complex form components, wire interdependency, complex conditional rendering, state management on multiple levels, debouncing input checking and updating state.  
 
 ### **Expected behavior:**
 User can choose different types of mortgage, enter (or use range sliders) different values, check additional options to reduce loan interest value. And after some delay (to minimize rerenders) results should be calculated and shown. Additionally user can view payment schedule.  
 ### **Progress Log:**
 
+#3. Form logic is online. All components interactions with formData state are completely streamlined (check and prepare new values on a components local level -> pass to the top component update function as object of new values -> update formData in one go). Due to the strictness of input value checking Inputs component stores local state of all input values. Final value checking and formData state updating is debounced for 1 second. This way lets user enter any new positive number before it get checked and corrected if it is out of bounds (that are set either in the input data or calculated from the price value).   
 #2. Add data lists (initial Form data, options, mods and inputs).  
 Add Form components with rudimentary logic for rendering inputs and corresponding range sliders, toggles and maternity/funds balancing. And required prop drilling for upcoming Form and Results state changing.
 Add form elements stylings. Add some auxiliary functions for general use.  
@@ -22,7 +23,8 @@ Add form elements stylings. Add some auxiliary functions for general use.
 - [x] Development env., basic layout, styles
 - [x] Fill up default form and lists data
 - [x] Create Form Component and its children, style up
-- [ ] Implement form logic
+- [x] Implement form logic
+- [ ] Fix maternity capital balancing 
 - [ ] Implement results debounce and calculation logic
 - [ ] Add payment schedule rendering
 - [ ] Refactor

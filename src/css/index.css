@@ -106,6 +106,7 @@ body {
   width: 100%;
   border: 1px solid #e46002;
   border-radius: 5px;
+  margin-bottom: 1.5rem;
 }
 .form__wrapper:hover, .form__wrapper:active, .form__wrapper:focus {
   border-color: rgb(59, 163, 59);
@@ -222,6 +223,20 @@ body {
   background-color: #f0f0f0;
   color: #898989;
   cursor: not-allowed;
+}
+.form__input-min {
+  position: absolute;
+  left: 0;
+  bottom: -1.2rem;
+  color: rgb(45, 31, 27);
+  font-size: 0.7rem;
+}
+.form__input-max {
+  position: absolute;
+  right: 0;
+  bottom: -1.2rem;
+  color: rgb(45, 31, 27);
+  font-size: 0.7rem;
 }
 .form__fee-percent {
   position: absolute;

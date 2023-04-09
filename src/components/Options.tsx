@@ -2,8 +2,19 @@ import React from 'react';
 import { OptionsPropsType } from '../types/types';
 
 
-export const Options = ( {data, selected, onChange}: OptionsPropsType ) => {
+export const Options = ( {data, selected, onDataChange}: OptionsPropsType ) => {
   const dataKeys = Object.keys(data);
+
+  function handleChange(eventValue: string) {
+    const target = 'purpose';
+    let formValue = eventValue;
+
+    if (!dataKeys.includes(formValue)) formValue = dataKeys [0];
+    onDataChange([
+      { target: target, value: formValue },
+      { target: 'mod', value: data[formValue].programs[0].id }
+    ]);
+  }
 
   return (
     <div className="form__wrapper">
@@ -11,7 +22,7 @@ export const Options = ( {data, selected, onChange}: OptionsPropsType ) => {
       <select key='optionsList' 
               name='options_list'
               value={ selected }
-              onChange={ onChange }
+              onChange={ event => handleChange(event.target.value) }
               className='form__select'
               >
         { dataKeys.map(option => (
