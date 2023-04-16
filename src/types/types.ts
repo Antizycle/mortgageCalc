@@ -37,11 +37,12 @@ export interface InitFormType extends StringKeysType {
 };
 
 export type ResultsType = {
-  monthly: number,
-  interest: number,
-  loanBody: number,
-  income: number
-};
+  rate: number;
+  loanBody: number;
+  totalRate: number;
+  monthly: number;
+  minIncome: number;
+}
 
 export type InputType = {
   id: string,
@@ -49,6 +50,15 @@ export type InputType = {
   max: number,
   label: string,
   title: string
+};
+
+export type ScheduleEntryType = {
+  year: number;
+  month: number;
+  payment: number;
+  interestPayment: number;
+  loanAmmortization: number;
+  nextLoanRemainder: number;
 };
 
 export type InputDataType = InputType[];
@@ -122,3 +132,9 @@ export type MaternityTogglePropsType = {
 export type LoanResultPropsType = {
   data: InitFormType
 };
+
+export type SchedulePropsType = {
+  formData: InitFormType,
+  results: ResultsType,
+  toggleSchedule: () => void
+}

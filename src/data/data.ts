@@ -165,3 +165,5 @@ export const togglesData = [
     url: '#'
   }
 ];
+
+export const monthList = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];

@@ -81,16 +81,192 @@ body {
 }
 
 .main__calc {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
   width: 100%;
+  max-width: 1200px;
+}
+@media (min-width: 700px) {
+  .main__calc {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 }
 .main__form {
   width: 100%;
 }
-.main__results {
-  width: 100%;
+@media (min-width: 700px) {
+  .main__form {
+    width: 65%;
+  }
 }
 .main__info {
   width: 100%;
+}
+
+.results {
+  width: 100%;
+}
+@media (min-width: 700px) {
+  .results {
+    width: 34%;
+  }
+}
+.results__header {
+  margin-bottom: 0.5em;
+}
+.results__wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  gap: 1em;
+  flex-wrap: wrap;
+}
+.results__item {
+  position: relative;
+  min-width: 9rem;
+  flex: 1;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid #7d564b;
+  border-radius: 5px;
+}
+.results__item-header {
+  margin-bottom: 0.1em;
+  color: rgb(45, 31, 27);
+  font-size: 0.8rem;
+  font-weight: 300;
+  padding: 0;
+}
+.results__item-value {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0;
+  color: #e46002;
+  padding: 0;
+}
+.results__show-schedule {
+  flex-grow: 1;
+  min-height: 3.5rem;
+  padding: 0.2rem 0.5rem;
+  background-color: white;
+  border: 1px solid #e46002;
+  border-radius: 5px;
+  margin-left: auto;
+  cursor: pointer;
+  transition: 20ms ease-in;
+}
+.results__show-schedule:hover {
+  border: 1px solid rgb(59, 163, 59);
+}
+.results__show-schedule:active {
+  transform: translate(1px, 1px);
+}
+
+.schedule {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: calc(100vw - 2rem);
+  height: calc(100vh - 2rem);
+  max-width: 1150px;
+  margin: 1rem;
+  padding: 1rem;
+  border: 1px solid #e46002;
+  border-radius: 5px;
+  background-color: white;
+  z-index: 10;
+  overflow: scroll;
+}
+.schedule__close {
+  float: right;
+  cursor: pointer;
+}
+.schedule__header {
+  margin-bottom: 0.5em;
+}
+.schedule__table {
+  width: 100%;
+  border-collapse: separate;
+  border-radius: 5px;
+  color: #101520;
+  text-align: center;
+  font-size: 0.8rem;
+}
+.schedule__table th {
+  background-color: #e46002;
+  font-size: 1rem;
+  color: white;
+  padding: 0.5em;
+}
+.schedule__table td {
+  padding: 0.5em;
+}
+.schedule__table td:nth-child(1) {
+  text-align: left;
+}
+.schedule__table td[colspan="3"] {
+  padding: 0.5em;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #e46002;
+  text-align: center;
+}
+.schedule__table tr {
+  background-color: rgba(228, 96, 2, 0.05);
+}
+.schedule__table tr:nth-child(even) {
+  background-color: rgba(228, 96, 2, 0.1);
+}
+.schedule__table tbody tr:hover {
+  background-color: rgba(228, 96, 2, 0.15);
+}
+
+.info__tooltip {
+  position: absolute;
+  right: 0.5rem;
+  bottom: 0.5rem;
+  width: 15px;
+  height: 15px;
+  padding: 0.3em;
+  background-color: rgb(45, 31, 27);
+  border-radius: 50px;
+  color: white;
+  font-size: 0.5rem;
+  font-style: italic;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.95;
+}
+
+.info:hover .info__content {
+  visibility: visible;
+}
+
+.info__content {
+  display: inline-block;
+  visibility: visible;
+  position: absolute;
+  width: min(250px, 85vw);
+  top: 0px;
+  right: 25px;
+  border: 1px solid rgb(45, 31, 27);
+  background-color: white;
+  border-radius: 5px;
+  color: black;
+  padding: 0.5em;
+  z-index: 20;
+}
+.info__content::after {
+  content: "";
+  position: absolute;
+  top: 7px; /* At the bottom of the tooltip */
+  right: 0px;
+  border-width: 7px;
+  border-style: solid;
+  border-color: transparent rgb(45, 31, 27) transparent transparent;
 }
 
 .form {
@@ -208,7 +384,6 @@ body {
   color: rgb(45, 31, 27);
 }
 .form__input {
-  padding: 0.3rem 1rem;
   font-size: 1.3rem;
   font-weight: 700;
   margin: 0;

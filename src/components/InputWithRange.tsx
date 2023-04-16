@@ -48,7 +48,6 @@ export const InputWithRange = ({ formData, input, value, onValueChange, onDataCh
           { target: 'fee', value: newFeeValue }
         );
       }
-      console.log(newValues);
       onValueChange(newValues);
       onDataChange(updateData);
     }, 1000));

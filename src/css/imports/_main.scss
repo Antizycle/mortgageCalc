@@ -5,45 +5,150 @@
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
-
     width: 100%;
+    max-width: 1200px;
 
+    @media (min-width: 700px) {
+      flex-direction: row;
+      justify-content: space-between;
+    }
   }
 
   &__form {
     width: 100%;
 
-  }
-
-  &__results {
-    width: 100%;
-
-    h2 {
-      margin-bottom: .5em;
-    }
-  }
-
-  &__result {
-    position: relative;
-    min-width: 30%;
-    padding: 0.2rem 0.5rem;
-    border: 1px solid adjust-color($grey-clr, $lightness: 25%);
-    border-radius: 5px;
-
-    h4 {
-      @include label-text();
-      padding: 0;
-    }
-
-    p {
-      @include numbers-txt();
-      padding: 0;
+    @media (min-width: 700px) {
+      width: 65%;
     }
   }
 
   &__info {
     width: 100%;
 
+  }
+}
+
+.results {
+  width: 100%;
+
+  @media (min-width: 700px) {
+    width: 34%;
+  }
+
+  &__header {
+    margin-bottom: .5em;
+  }
+
+  &__wrapper {
+    @include flex(flex-start, center, row, 1em, wrap);
+  }
+
+  &__item {
+    position: relative;
+    min-width: 9rem;
+    flex: 1;
+    padding: 0.2rem 0.5rem;
+    border: 1px solid adjust-color($grey-clr, $lightness: 25%);
+    border-radius: 5px;
+
+    &-header {
+      @include label-text();
+      padding: 0;
+    }
+    
+    &-value {
+      @include numbers-txt();
+      padding: 0;
+    }
+  }
+
+  &__show-schedule {
+    flex-grow: 1;
+    min-height: 3.5rem;
+    padding: 0.2rem 0.5rem;
+    background-color: white;
+    border: 1px solid $acnt-clr;
+    border-radius: 5px;
+    margin-left: auto;
+    cursor: pointer;
+    transition: 20ms ease-in;
+
+    &:hover {
+      border: 1px solid $corct-clr;
+    }
+
+    &:active {
+      transform: translate(1px, 1px);
+    }
+  }
+}
+
+.schedule {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: calc(100vw - 2rem);
+  height: calc(100vh - 2rem);
+  max-width: 1150px;
+  margin: 1rem;
+  padding: 1rem;
+  border: 1px solid $acnt-clr;
+  border-radius: 5px;
+  background-color: white;
+  z-index: 10;
+  overflow: scroll;
+
+  &__close {
+    float: right;
+    cursor: pointer;
+  }
+
+  &__header {
+    margin-bottom: 0.5em;
+  }
+
+  &__table {
+    width: 100%;
+    border-collapse:separate;
+    border-radius: 5px;
+    color: $dark-clr;
+    text-align: center;
+    font-size: .8rem;
+
+    th {
+      background-color: $acnt-clr;
+      font-size: 1rem;
+      color: white;
+      padding: 0.5em;
+    }
+
+    td {
+      padding: 0.5em;
+
+      &:nth-child(1) {
+        text-align: left;
+      }
+    }
+
+    td[colspan='3'] {
+      padding: .5em;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: $acnt-clr;
+      text-align: center;
+    }
+
+    tr {
+      background-color: change-color($acnt-clr, $alpha: .05);
+    }
+
+    tr:nth-child(even) {
+      background-color: change-color($acnt-clr, $alpha: .10);
+    }
+
+    tbody tr:hover {
+      background-color: change-color($acnt-clr, $alpha: .15);
+    }
   }
 }
 

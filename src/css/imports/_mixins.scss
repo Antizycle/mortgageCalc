@@ -17,6 +17,15 @@
   align-items: center;
 }
 
+@mixin flex($jc: 'space-between', $ai: 'center', $dir: 'row', $gap: '1em', $wrap: 'wrap') {
+  display: flex;
+  justify-content: $jc;
+  align-items: $ai;
+  flex-direction: $dir;
+  gap: $gap;
+  flex-wrap: $wrap;
+}
+
 @mixin label-text {
   margin-bottom: .1em;
   color: $grey-clr;
@@ -25,7 +34,7 @@
 }
 
 @mixin numbers-txt {
-  padding: .3rem 1rem;
+  // padding: .3rem 1rem;
   font-size: 1.3rem;
   font-weight: 700;
   margin: 0;
