@@ -41,33 +41,34 @@ export type ResultsType = {
   interest: number,
   loanBody: number,
   income: number
-}
+};
+
 export type InputType = {
   id: string,
   min: number,
   max: number,
   label: string,
   title: string
-}
+};
 
 export type InputDataType = InputType[];
 
 export type NextFormDataElementType = {
   target: string, value: string | number | boolean
-}
+};
 
 export type NextFormDataType = NextFormDataElementType[];
 
-export type OnDataChangeType = (nextFormData: NextFormDataType) => void
+export type OnDataChangeType = (nextFormData: NextFormDataType) => void;
 
 export type InputStateType = {
   [key: string]: number
-}
+};
 
 export type LoanFormPropsType = {
   data: InitFormType,
   onDataChange: OnDataChangeType
-}
+};
 
 export type OptionsPropsType = {
   data: OptionListType,
@@ -85,7 +86,7 @@ export type ModsPropsType = {
 export type InputsPropsType = {
   data: InitFormType,
   onDataChange: OnDataChangeType
-}
+};
 
 export type InputWithRangePropsType = {
   formData: InitFormType,
@@ -93,26 +94,31 @@ export type InputWithRangePropsType = {
   value: number,
   onValueChange: (newValue: InputStateType) => void,
   onDataChange: OnDataChangeType
-}
+};
 
 export type ToggleType = {
   description: string,
   discount: number,
   info: string,
   url: string
-}
+};
+
 export type TogglesDataType = {
   [key: string]: keyof InitFormType,
-}
+};
 
 export type ExtraTogglePropsType = {
   data: InitFormType,
   onDataChange: OnDataChangeType
-}
+};
 
 export type MaternityTogglePropsType = {
   feeValue: number
   data: InitFormType,
   onValueChange: (newValue: InputStateType) => void,
   onDataChange: OnDataChangeType
-}
+};
+
+export type LoanResultPropsType = {
+  data: InitFormType
+};

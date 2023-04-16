@@ -16,3 +16,18 @@
   justify-content: center;
   align-items: center;
 }
+
+@mixin label-text {
+  margin-bottom: .1em;
+  color: $grey-clr;
+  font-size: .8rem;
+  font-weight: 300;
+}
+
+@mixin numbers-txt {
+  padding: .3rem 1rem;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0;
+  color: $acnt-clr;
+}

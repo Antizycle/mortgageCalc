@@ -33,9 +33,9 @@ export const InputWithRange = ({ formData, input, value, onValueChange, onDataCh
     if (timeoutId) clearTimeout(timeoutId);
 
     setTimeoutId(setTimeout( () => {
-      const newValues = { [type]: eventValue };
       if (eventValue < minValue) eventValue = minValue;
       if (eventValue > maxValue) eventValue = maxValue;
+      const newValues = { [type]: eventValue };
 
       const updateData = [{ target: type, value: eventValue }];
       if (type === 'fee') updateData.push(
@@ -48,6 +48,7 @@ export const InputWithRange = ({ formData, input, value, onValueChange, onDataCh
           { target: 'fee', value: newFeeValue }
         );
       }
+      console.log(newValues);
       onValueChange(newValues);
       onDataChange(updateData);
     }, 1000));

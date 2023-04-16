@@ -12,6 +12,9 @@ export const Inputs = ( {data, onDataChange}: InputsPropsType ) => {
 
   function onValueChange(newValues: InputStateType) {
     const nextValues = {...values, ...newValues};
+    // setValues( (prevValues) => {
+    //   return {...prevValues, ...nextValues};
+    // });
     setValues(nextValues);
   }
 

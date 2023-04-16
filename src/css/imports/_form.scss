@@ -69,10 +69,7 @@
     position: relative;
     top: .2rem;
     left: 1rem;
-    margin-bottom: .1em;
-    color: $grey-clr;
-    font-size: .8rem;
-    font-weight: 300;
+    @include label-text();
 
     &--switch-desc {
       font-size: 0.8rem;
@@ -132,11 +129,7 @@
   }
 
   &__input {
-    padding: .3rem 1rem;
-    font-size: 1.3rem;
-    font-weight: 700;
-    margin: 0;
-    color: $acnt-clr;
+    @include numbers-txt();
     background-color: transparent;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
