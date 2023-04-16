@@ -55,10 +55,10 @@ export type InputType = {
 export type ScheduleEntryType = {
   year: number;
   month: number;
-  payment: number;
+  payment: string;
   interestPayment: number;
   loanAmmortization: number;
-  nextLoanRemainder: number;
+  nextLoanRemainder: string;
 };
 
 export type InputDataType = InputType[];

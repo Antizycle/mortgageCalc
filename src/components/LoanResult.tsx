@@ -15,10 +15,10 @@ export const LoanResult = ({ data }: LoanResultPropsType) => {
     const rate = (data.initRate + totalDiscount);
     const loanBody = data.price - data.fee;
     const totalRate = (1 + rate / 1200) ** (data.term * 12);
-    const monthly = Math.round((loanBody * (rate / 1200) * totalRate) / (totalRate - 1));
+    const monthly = Math.round((loanBody * (rate / 12) * totalRate) / (totalRate - 1)) / 100;
 
     const minIncomeCoef = 0.68;
-    const minIncome = Math.round(monthly / minIncomeCoef);
+    const minIncome = Math.round(monthly * 100 / minIncomeCoef) / 100;
 
     return {rate, loanBody, totalRate, monthly, minIncome}
   }
