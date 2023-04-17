@@ -6,7 +6,7 @@ export function calcResults (data: InitFormType) {
     .filter( (entry) => data[entry.id] )
     .reduce( (sum, entry) => sum + entry.discount , 0); // filter out false discounts, sum up discounts
 
-  const rate = (data.initRate + totalDiscount);
+  const rate = Number((data.initRate + totalDiscount).toFixed(1));
   const loanBody = data.price - data.fee;
   const totalRate = (1 + rate / 1200) ** (data.term * 12);
   const monthly = Math.round((loanBody * (rate / 12) * totalRate) / (totalRate - 1)) / 100;

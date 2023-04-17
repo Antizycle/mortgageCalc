@@ -3,11 +3,11 @@ import { InputStateType, InputsPropsType } from '../types/types';
 import { inputData } from '../data/data';
 import { InputWithRange } from './InputWithRange';
 
-export const Inputs = ( {data, onDataChange}: InputsPropsType ) => {
+export const Inputs = ( {formData, onDataChange}: InputsPropsType ) => {
   const [ values, setValues ] = useState<InputStateType>({
-    price: data.price,
-    fee: data.fee,
-    term: data.term
+    price: formData.price,
+    fee: formData.fee,
+    term: formData.term
   });
 
   function onValueChange(newValues: InputStateType) {
@@ -23,7 +23,7 @@ export const Inputs = ( {data, onDataChange}: InputsPropsType ) => {
 
       {inputData.map( input => (
         <InputWithRange 
-          formData={ data } 
+          formData={ formData } 
           input={ input } 
           value={ values[input.id] }
           onValueChange={ onValueChange }

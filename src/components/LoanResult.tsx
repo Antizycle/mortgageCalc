@@ -4,10 +4,10 @@ import { thousSeparator } from '../auxiliary/auxiliary';
 import { Schedule } from './Schedule';
 import { calcResults } from '../auxiliary/calculations';
 
-export const LoanResult = ({ data }: LoanResultPropsType) => {
+export const LoanResult = ({ formData }: LoanResultPropsType) => {
   const [showSchedule, setShowSchedule] = useState(false);
 
-  const results: ResultsType = calcResults(data);
+  const results: ResultsType = calcResults(formData);
 
   function toggleSchedule() {
     setShowSchedule(!showSchedule);
@@ -39,7 +39,8 @@ export const LoanResult = ({ data }: LoanResultPropsType) => {
           Show Schedule
         </button>
       </div>
-      { showSchedule && <Schedule formData={data} results={results} toggleSchedule={ toggleSchedule } /> }
+      { showSchedule && 
+        <Schedule formData={ formData } results={ results } toggleSchedule={ toggleSchedule } /> }
     </aside>
   );
 }

@@ -3,10 +3,11 @@ import { ExtraTogglePropsType } from '../types/types';
 import { togglesData } from '../data/data';
 import { ExtraToggleInfo } from './ExtraToggleInfo';
 
-export const ExtraToggle = ( {data, onDataChange}: ExtraTogglePropsType ) => {
+export const ExtraToggle = ( {formData, onDataChange}: ExtraTogglePropsType ) => {
   let currentToggles = togglesData.filter( toggle => toggle.id !== 'canConfirmSalary' );
   
-  if (data.salaryProj === false) currentToggles = Array.from(togglesData);
+  if (formData.regional) currentToggles = currentToggles.filter( toggle => !/salaryProj|insurance/.test(toggle.id));
+  else if (formData.salaryProj === false) currentToggles = Array.from(togglesData);
 
   function handleClick(eventTarget: string, eventValue: boolean) {
         onDataChange([
@@ -20,12 +21,12 @@ export const ExtraToggle = ( {data, onDataChange}: ExtraTogglePropsType ) => {
         <div className="form__switch-wrapper" key={ toggle.id }>
           <div className="form__switch" >
             <span className='form__lable--switch-desc'>{ toggle.description }</span>
-            <span className={ (data[toggle.id] ? 'form__acnt-text' : '') + ' form__label--switch' }>
-              { data[toggle.id] ? toggle.discount : '-0.0' }%
+            <span className={ (formData[toggle.id] ? 'form__acnt-text' : '') + ' form__label--switch' }>
+              { formData[toggle.id] ? toggle.discount : '-0.0' }%
             </span>
-            <div className={ (data[toggle.id] ? 'form__switch-container--on' : '') + ' form__switch-container'} 
-                  onClick={ () => handleClick(toggle.id, !data[toggle.id]) }>
-              <div className={ (data[toggle.id] ? 'form__toggle form__toggle--on' : 'form__toggle')}>
+            <div className={ (formData[toggle.id] ? 'form__switch-container--on' : '') + ' form__switch-container'} 
+                  onClick={ () => handleClick(toggle.id, !formData[toggle.id]) }>
+              <div className={ (formData[toggle.id] ? 'form__toggle form__toggle--on' : 'form__toggle')}>
               </div>
             </div>
           </div>

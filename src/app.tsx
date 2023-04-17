@@ -33,8 +33,8 @@ export const App: React.FC = () => {
     <main className='main container'>
       <section className="main__calc">
 
-        <LoanForm data={ formData } onDataChange={ onDataChange } />
-        <LoanResult data={ formData }/>
+        <LoanForm formData={ formData } onDataChange={ onDataChange } />
+        <LoanResult formData={ formData }/>
 
       </section>
 

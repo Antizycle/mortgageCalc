@@ -178,7 +178,12 @@
     border: none;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
+    outline: transparent;
     cursor: col-resize;
+
+    &:focus-visible {
+      outline: 1px solid #fafafa;
+    }
 
     &:disabled {
       background-color: linear-gradient(to right, $grey-clr, adjust-color($grey-clr, $lightness: -20%));
@@ -198,7 +203,8 @@
       transition: 100ms;
 
       &:hover,
-      &:active {
+      &:active, &:focus,
+      &:focus-within {
         transform: scale(150%);
       }
     }

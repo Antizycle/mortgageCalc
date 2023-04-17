@@ -89,7 +89,7 @@ export const InputWithRange = ({ formData, input, value, onValueChange, onDataCh
     { type === 'fee' && 
       <MaternityToggle 
         feeValue={ value }
-        data={ formData } 
+        formData={ formData } 
         onValueChange={ onValueChange }
         onDataChange={ onDataChange } 
         /> 

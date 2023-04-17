@@ -77,7 +77,7 @@ export type InputStateType = {
 };
 
 export type LoanFormPropsType = {
-  data: InitFormType,
+  formData: InitFormType,
   onDataChange: OnDataChangeType
 };
 
@@ -89,13 +89,14 @@ export type OptionsPropsType = {
 
 export type ModsPropsType = {
   data: OptionListType,
+  formData: InitFormType,
   selectedPurpose: string,
   selectedMod: string,
   onDataChange: OnDataChangeType
 };
 
 export type InputsPropsType = {
-  data: InitFormType,
+  formData: InitFormType,
   onDataChange: OnDataChangeType
 };
 
@@ -119,19 +120,19 @@ export type TogglesDataType = {
 };
 
 export type ExtraTogglePropsType = {
-  data: InitFormType,
+  formData: InitFormType,
   onDataChange: OnDataChangeType
 };
 
 export type MaternityTogglePropsType = {
   feeValue: number
-  data: InitFormType,
+  formData: InitFormType,
   onValueChange: (newValue: InputStateType) => void,
   onDataChange: OnDataChangeType
 };
 
 export type LoanResultPropsType = {
-  data: InitFormType
+  formData: InitFormType
 };
 
 export type SchedulePropsType = {
