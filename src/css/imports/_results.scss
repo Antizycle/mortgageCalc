@@ -1,0 +1,55 @@
+.results {
+  width: 100%;
+
+  @media (min-width: 700px) {
+    width: 34%;
+  }
+
+  &__header {
+    margin-bottom: .5em;
+  }
+
+  &__wrapper {
+    @include flex(flex-start, center, row, 1em, wrap);
+  }
+
+  &__item {
+    position: relative;
+    min-width: 9rem;
+    flex: 1;
+    padding: 0.2rem 0.5rem;
+    border: 1px solid adjust-color($grey-clr, $lightness: 25%);
+    border-radius: 5px;
+
+    &-header {
+      @include label-text();
+      padding: 0;
+    }
+    
+    &-value {
+      @include numbers-txt();
+      padding: 0;
+    }
+  }
+
+  &__show-schedule {
+    flex-grow: 1;
+    min-height: 3.5rem;
+    padding: 0.2rem 0.5rem;
+    background-color: white;
+    border: 1px solid $acnt-clr;
+    border-radius: 5px;
+    margin-left: auto;
+    cursor: pointer;
+    transition: 20ms ease-in;
+
+    &:hover {
+      border: 1px solid $corct-clr;
+    }
+
+    &:active {
+      transform: translate(1px, 1px);
+    }
+  }
+}
+

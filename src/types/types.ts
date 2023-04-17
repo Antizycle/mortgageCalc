@@ -53,12 +53,13 @@ export type InputType = {
 };
 
 export type ScheduleEntryType = {
-  year: number;
-  month: number;
-  payment: string;
-  interestPayment: number;
-  loanAmmortization: number;
-  nextLoanRemainder: string;
+  year: number,
+  month: number,
+  payment: string,
+  interestPayment: number,
+  loanAmmortization: number,
+  nextLoanRemainder: string,
+  key: string,
 };
 
 export type InputDataType = InputType[];
@@ -137,4 +138,8 @@ export type SchedulePropsType = {
   formData: InitFormType,
   results: ResultsType,
   toggleSchedule: () => void
-}
+};
+
+export type ScrollToPropType = {
+  parent: React.RefObject<HTMLDivElement>
+};

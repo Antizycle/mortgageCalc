@@ -1,0 +1,32 @@
+.scroll-to {
+  &__container {
+    position: fixed;
+    right: 35px;
+    bottom: 40px;
+  }
+  &__button {
+    background-color: #eaeae0;
+    color: $dark-clr;
+    padding: .5em;
+    font-size: .7rem;
+    box-shadow: 0 0 4px 1px rgba(50, 50, 50, .2);
+
+    &:hover, &:active, &:focus {
+      background-color: #efefed;
+      box-shadow: 0 0 4px 1px rgba(50, 50, 50, .4);
+    }
+
+    &:active, &:focus {
+      transform: translate(1px, 1px);
+    }
+
+    &--top {
+      border-radius: 5px 5px 0 0;
+      margin-bottom: 2px;
+    }
+
+    &--bot {
+      border-radius: 0 0 5px 5px;
+    }
+  }
+}

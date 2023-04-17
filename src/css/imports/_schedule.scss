@@ -1,0 +1,78 @@
+.schedule {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: calc(100vw - 2rem);
+  height: calc(100vh - 2rem);
+  max-width: 1150px;
+  margin: 1rem;
+  padding: 1rem;
+  border: 1px solid $acnt-clr;
+  border-radius: 5px;
+  background-color: white;
+  z-index: 10;
+  overflow: scroll;
+
+  &__close {
+    position: fixed;
+    top: 1.7rem;
+    right: 2rem;
+    padding: .3em;
+    text-align: center;
+    font-size: .5;
+    opacity: .7;
+    cursor: pointer;
+
+    &:hover, &:focus {
+      opacity: 1;
+    }
+  }
+
+  &__header {
+    margin-bottom: 0.5em;
+  }
+
+  &__table {
+    width: 100%;
+    border-collapse:separate;
+    border-radius: 5px;
+    color: $dark-clr;
+    text-align: center;
+    font-size: .8rem;
+
+    th {
+      background-color: $acnt-clr;
+      font-size: 1rem;
+      color: white;
+      padding: 0.5em;
+    }
+
+    td {
+      padding: 0.5em;
+
+      &:nth-child(1) {
+        text-align: left;
+      }
+    }
+
+    td[colspan='3'] {
+      padding: .5em;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: $acnt-clr;
+      text-align: center;
+    }
+
+    tr {
+      background-color: change-color($acnt-clr, $alpha: .05);
+    }
+
+    tr:nth-child(even) {
+      background-color: change-color($acnt-clr, $alpha: .10);
+    }
+
+    tbody tr:hover {
+      background-color: change-color($acnt-clr, $alpha: .15);
+    }
+  }
+}

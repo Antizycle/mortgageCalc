@@ -130,6 +130,7 @@
 
   &__input {
     @include numbers-txt();
+    padding: .3rem 1rem;
     background-color: transparent;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;

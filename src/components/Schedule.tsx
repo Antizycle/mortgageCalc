@@ -1,37 +1,17 @@
-import React, { MutableRefObject, useEffect, useRef } from 'react';
+import React from 'react';
 import { SchedulePropsType, ScheduleEntryType } from '../types/types';
 import { monthList } from '../data/data'; 
-import { generateSchedule } from '../auxiliary/auxiliary';
+import { generateSchedule } from '../auxiliary/calculations';
+import { useClickOutside } from '../auxiliary/useClickOutside';
+import { ScrollTo } from './ScrollTo';
 
 export const Schedule = ({ formData, results, toggleSchedule }: SchedulePropsType) => {
-  const domNode = useRef<HTMLDivElement>(null);
-  
+  const domNode = useClickOutside(() => toggleSchedule());
   const schedule = generateSchedule(formData.term, results);
-
-  const onEscPress = (event: KeyboardEvent) => {
-    if (event.code === 'Escape') toggleSchedule();
-  }
-
-  useEffect(() => {
-    const maybeHandler = (event: MouseEvent | TouchEvent) => {
-      if (event.target) {
-        if (!(domNode as MutableRefObject<HTMLDivElement>).current.contains(event.target as Node)) {
-          toggleSchedule();
-        }};
-      }
-      document.addEventListener('mousedown', maybeHandler);
-      document.addEventListener('touchend', maybeHandler);
-      document.addEventListener('keyup', onEscPress);
-    return () => {
-      document.removeEventListener('mousedown', maybeHandler);
-      document.removeEventListener('touchend', maybeHandler);
-      document.removeEventListener('keyup', onEscPress);
-    };
-  });
-
+  
   function generateScheduleRow(entry: ScheduleEntryType) {
     return (
-      <tr>
+      <tr key={ entry.key }>
         <td>{ monthList[entry.month] }</td>
         <td title={ `Loan Interest: ${entry.interestPayment}, Loan Ammortization: ${entry.loanAmmortization}` }>{ entry.payment }</td>
         <td>{ entry.nextLoanRemainder }</td>
@@ -39,24 +19,29 @@ export const Schedule = ({ formData, results, toggleSchedule }: SchedulePropsTyp
   }
 
   return (
-    <div ref={ domNode } className='schedule'>
-      <span className='schedule__close' onClick={ toggleSchedule }>X</span>
+    <div ref={ domNode } className='schedule' key='scheduleCont'>
+      <ScrollTo parent={ domNode }/>
+      <span className='schedule__close' onClick={ toggleSchedule }>&#9587;</span>
       <h2 className="schedule__header">
         Mortgage preliminary information
       </h2>
-      <table className='schedule__table'>
-        <thead><tr>
+      text
+      <table className='schedule__table' key='scheduleTable'>
+        <thead>
+          <tr>
+            <></>
             <th>Month</th>
             <th>Monthly payment</th>
             <th>Loan Remainder</th>
-        </tr></thead>
-        <tbody id="tbody">
+          </tr>
+        </thead>
+        <tbody id="tbody" key='scheduleBody'>
             {
               schedule.map( (entry, index) => {
-                if (index === 0 || entry.month === 0) return (<>
+                if (index === 0 || entry.month === 0) return (<React.Fragment key={ `${entry.key}-head` }>
                   <tr><td colSpan={ 3 }>{ entry.year }</td></tr>
                   { generateScheduleRow(entry) }
-                  </>)
+                  </React.Fragment>);
                 else return generateScheduleRow(entry)
               })
             }

@@ -1,34 +1,16 @@
 import React, { useState } from 'react';
-import { InitFormType, LoanResultPropsType, ResultsType } from '../types/types';
-import { togglesData } from '../data/data';
+import { LoanResultPropsType, ResultsType } from '../types/types';
 import { thousSeparator } from '../auxiliary/auxiliary';
 import { Schedule } from './Schedule';
+import { calcResults } from '../auxiliary/calculations';
 
 export const LoanResult = ({ data }: LoanResultPropsType) => {
-  const [showSchdeule, setShowSchedule] = useState(false);
-
-  function calcResults (data: InitFormType) {
-    const totalDiscount = togglesData
-      .filter( (entry) => data[entry.id] )
-      .reduce( (sum, entry) => sum + entry.discount , 0); // filter out false discounts, sum up discounts
-
-    const rate = (data.initRate + totalDiscount);
-    const loanBody = data.price - data.fee;
-    const totalRate = (1 + rate / 1200) ** (data.term * 12);
-    const monthly = Math.round((loanBody * (rate / 12) * totalRate) / (totalRate - 1)) / 100;
-
-    const minIncomeCoef = 0.68;
-    const minIncome = Math.round(monthly * 100 / minIncomeCoef) / 100;
-
-    return {rate, loanBody, totalRate, monthly, minIncome}
-  }
+  const [showSchedule, setShowSchedule] = useState(false);
 
   const results: ResultsType = calcResults(data);
 
-  
-
   function toggleSchedule() {
-    setShowSchedule(!showSchdeule);
+    setShowSchedule(!showSchedule);
   }
 
   return (
@@ -57,7 +39,7 @@ export const LoanResult = ({ data }: LoanResultPropsType) => {
           Show Schedule
         </button>
       </div>
-      { showSchdeule && <Schedule formData={data} results={results} toggleSchedule={ toggleSchedule }/> }
+      { showSchedule && <Schedule formData={data} results={results} toggleSchedule={ toggleSchedule } /> }
     </aside>
   );
 }

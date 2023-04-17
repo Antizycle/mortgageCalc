@@ -13,6 +13,7 @@ Practice styling complex form components, wire interdependency, complex conditio
 User can choose different types of mortgage, enter (or use range sliders) different values, check additional options to reduce loan interest value. And after some delay (to minimize rerenders) results should be calculated and shown. Additionally user can view payment schedule.  
 ### **Progress Log:**
 
+#7. First step to move all the calculations in a standalone module (schedule generation and results for now). useClickOutside is a custom hook now. Added quick scroll buttons, with some minor adjustments should be able make into a general use module. 
 #6. Quick fix for Schedule calculations. Due to the small numbers and round to nearest integer accumulated rounding error proved to be to high to neglect. So now monthly payment, required income and nextLoandReminder are calculated and rounded to 2 decimal digits. This lead to a small update in thousandSeparator function which now takes in account a possibility of any decimal digits present. And some type changes for the schedule data.  
 #5. Schedule can be view now. There are some quirks hiding about, though. Made first steps to styling desktop layout. Combed results jsx a bit.  
 #4. Results calculating and rendering is implemented. Debouncing is done on Inputs component level and only for input values. That should be sufficient in my opinion. Some styling optimization. And fixed an issue with input fields state update. Now it is impossible to enter and save a value that is out of maximum bound.  
@@ -30,7 +31,7 @@ Add form elements stylings. Add some auxiliary functions for general use.
 - [x] Fix maternity capital balancing 
 - [x] Implement results debounce and calculation logic
 - [x] Add payment schedule rendering
-- [ ] Add scroll to the top button for the schedule view
+- [x] Add scroll to the top button for the schedule view
 - [ ] Add tooltip component to streamline all tooltips visuals
 - [ ] Refactor
 - [ ] Refactor more
