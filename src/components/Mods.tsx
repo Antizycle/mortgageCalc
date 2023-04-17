@@ -23,8 +23,9 @@ export const Mods = ( {data, formData, selectedPurpose, selectedMod, onDataChang
       );
     }
     const feeCheck = Math.round(formData.price * programData.minFee / 100);
-    if (formData.fee < feeCheck) nextFormData.push({ target: 'fee', value: feeCheck });
-
+    if (formData.fee < feeCheck) {
+      nextFormData.push({ target: 'fee', value: feeCheck });
+    }
     onDataChange(nextFormData);
   }
 

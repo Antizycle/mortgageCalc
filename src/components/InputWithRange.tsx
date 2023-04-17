@@ -35,7 +35,7 @@ export const InputWithRange = ({ formData, input, value, onValueChange, onDataCh
     setTimeoutId(setTimeout( () => {
       if (eventValue < minValue) eventValue = minValue;
       if (eventValue > maxValue) eventValue = maxValue;
-      const newValues = { [type]: eventValue };
+      // const newValues = { [type]: eventValue };
 
       const updateData = [{ target: type, value: eventValue }];
       if (type === 'fee') updateData.push(
@@ -43,12 +43,12 @@ export const InputWithRange = ({ formData, input, value, onValueChange, onDataCh
         );
       if (type === 'price') {
         const newFeeValue = Math.round(eventValue * formData.feePercent / 100);
-        newValues.fee = newFeeValue;
+        // newValues.fee = newFeeValue;
         updateData.push(
           { target: 'fee', value: newFeeValue }
         );
       }
-      onValueChange(newValues);
+      // onValueChange(newValues);
       onDataChange(updateData);
     }, 1000));
   }

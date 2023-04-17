@@ -13,14 +13,7 @@
       flex-direction: row;
       justify-content: space-between;
       align-items: flex-start;
-    }
-  }
-
-  &__form {
-    width: 100%;
-
-    @media (min-width: 700px) {
-      width: 65%;
+      gap: 3rem;
     }
   }
 
