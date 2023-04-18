@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { InputWithRangePropsType } from '../types/types';
 import { thousSeparator, prepareValue, formatLimits } from '../auxiliary/auxiliary';
 import { MaternityToggle } from './MaternityToggle';
+import { Tooltip } from './Tooltip';
 
 export const InputWithRange = ({ formData, input, value, onValueChange, onDataChange }: InputWithRangePropsType) => {
   const [ timeoutId, setTimeoutId ] = useState<NodeJS.Timeout>();
-  // if (value !== Number(formData[input.id])) setValue((Number(formData[input.id])));
+  const inputContEl = useRef(null);
   
-  // let value = Number(formData[input.id]);
   let { min: minValue, max: maxValue, title } = input;
   let isDisabled = false;
   const { id: type, label } = input;
@@ -35,7 +35,6 @@ export const InputWithRange = ({ formData, input, value, onValueChange, onDataCh
     setTimeoutId(setTimeout( () => {
       if (eventValue < minValue) eventValue = minValue;
       if (eventValue > maxValue) eventValue = maxValue;
-      // const newValues = { [type]: eventValue };
 
       const updateData = [{ target: type, value: eventValue }];
       if (type === 'fee') updateData.push(
@@ -43,12 +42,11 @@ export const InputWithRange = ({ formData, input, value, onValueChange, onDataCh
         );
       if (type === 'price') {
         const newFeeValue = Math.round(eventValue * formData.feePercent / 100);
-        // newValues.fee = newFeeValue;
         updateData.push(
           { target: 'fee', value: newFeeValue }
         );
       }
-      // onValueChange(newValues);
+
       onDataChange(updateData);
     }, 1000));
   }
@@ -59,7 +57,10 @@ export const InputWithRange = ({ formData, input, value, onValueChange, onDataCh
 
   return (
     <>
-    <div className={ (isDisabled ? 'form__wrapper--disabled' : '') + ' form__wrapper' } key={ type }>
+    <div 
+      className={ (isDisabled ? 'form__wrapper--disabled' : '') + ' form__wrapper' } key={ type }
+      ref={ inputContEl }
+      >
       <label htmlFor={ type + '_input'} className='form__label'>{ label }</label>
       <input type='text'
              className='form__input'
@@ -85,6 +86,7 @@ export const InputWithRange = ({ formData, input, value, onValueChange, onDataCh
             />
         <div className="form__input-min">{ formatLimits(minValue, type) } </div>
         <div className="form__input-max">{ formatLimits(maxValue, type) } </div>
+        <Tooltip type={ type } parent={ inputContEl }/>
     </div>
     { type === 'fee' && 
       <MaternityToggle 

@@ -3,7 +3,7 @@
 Warning! This is app is a learning exercise. It uses real loan logic, but made up currency!
 
 ## **Using:** 
-Node.Js, Webpack 5 (with SASS, min-css-extract-plugin, html-webpack-plugin, devserver), SASS, React, Typescript  
+Node.Js, Webpack 5 (with SASS, min-css-extract-plugin, html-webpack-plugin, devserver), SASS, React, Typescript, PopperJS  
 
 ### **Goal:**
 Create a mortgage calculator with proper math behind calculations, different options that would affect calculations.
@@ -13,6 +13,7 @@ Practice styling complex form components, wire interdependency, complex conditio
 User can choose different types of mortgage, enter (or use range sliders) different values, check additional options to reduce loan interest value. And after some delay (to minimize rerenders) results should be calculated and shown. Additionally user can view payment schedule.  
 ### **Progress Log:**
 
+#9. First iteration of Tooltip component for general use. Using PopperJS. There are some quirks to work out, though. Especially how to streamline content to a tooltip from various components.
 #8. Refactored how formData is passed as props. Now formData is always named 'formData', any component specific data is 'data'.  
 Results.rate sometimes loses precision (due to IEEF 754 float point standard), so it is rounded to 1 decimal digit.  
 Fee could get wrong value when changing to mod with different minFee, now there is a check in the Mods component to prevent that and Inputs component local state is directly updated from globalForm data. This actually works even better in regards to data flow and visual representation, than previous structure.  

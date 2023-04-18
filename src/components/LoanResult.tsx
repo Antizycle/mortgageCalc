@@ -3,6 +3,7 @@ import { LoanResultPropsType, ResultsType } from '../types/types';
 import { thousSeparator } from '../auxiliary/auxiliary';
 import { Schedule } from './Schedule';
 import { calcResults } from '../auxiliary/calculations';
+import { Tooltip } from './Tooltip';
 
 export const LoanResult = ({ formData }: LoanResultPropsType) => {
   const [showSchedule, setShowSchedule] = useState(false);
@@ -22,18 +23,22 @@ export const LoanResult = ({ formData }: LoanResultPropsType) => {
         <div className="results__item">
           <h4 className="results__item-header">Loam Interest Rate:</h4>
           <p className="results__item-value">{ thousSeparator(results.rate) }%</p>
+          <Tooltip type='resultsRate' />
         </div>
         <div className="results__item">
           <h4 className="results__item-header">Loan Amount:</h4>
           <p className="results__item-value">{ thousSeparator(results.loanBody) } ≉</p>
+          <Tooltip type='resultsRate' />
         </div>
         <div className="results__item">
           <h4 className="results__item-header">Monthly Payment:</h4>
           <p className="results__item-value">{ thousSeparator(results.monthly) } ≉</p>
+          <Tooltip type='resultsRate' />
         </div>
         <div className="results__item">
           <h4 className="results__item-header">Minimum income:</h4>
           <p className="results__item-value">{ thousSeparator(results.minIncome) } ≉</p>
+          <Tooltip type='resultsRate' />
         </div>
         <button className="results__show-schedule" onClick={toggleSchedule}>
           Show Schedule
